@@ -1,0 +1,23 @@
+The CSS property `calc()` is used to perform calculations with different units, but sometimes unexpected results may occur due to operator precedence and unit compatibility. For example, consider this code snippet:
+
+```css
+.box {
+  width: calc(100% - 10px);
+}
+```
+
+If the parent element of `.box` does not have a defined width, this calculation might not produce the expected result, as `100%` is not directly subtractable with `10px` without being resolved properly. Another issue can occur if there are multiple `calc()` operations nested within each other, leading to complex parsing and potentially incorrect output. 
+
+Another uncommon issue might be related to the use of `!important` with CSS variables (custom properties).
+
+```css
+:root {
+  --main-color: blue;
+}
+
+.element {
+  color: var(--main-color) !important;
+}
+```
+
+While generally functioning as expected, overusing `!important` can lead to unexpected styling behavior and make it difficult to maintain the CSS codebase, as it violates the CSS cascading mechanism.  It can also cause conflicts when different parts of the code use `!important` to override styles. Incorrectly using it can also break specificity rules.
